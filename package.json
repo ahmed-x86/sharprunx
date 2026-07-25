@@ -1,0 +1,65 @@
+{
+  "name": "sharprunx",
+  "displayName": "SharpRunX",
+  "description": "Run raw C# code instantly on Linux using mcs and mono.",
+  "version": "1.0.0",
+  "publisher": "ahmed-x86",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "c#",
+    "csharp",
+    "runner",
+    "mono",
+    "linux"
+  ],
+  "activationEvents": [
+    "onLanguage:csharp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sharprunx.runCSharp",
+        "title": "SharpRunX: Run C# File",
+        "icon": "$(play)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sharprunx.runCSharp",
+        "key": "ctrl+alt+c",
+        "when": "editorTextFocus && resourceLangId == csharp"
+      }
+    ],
+    "menus": {
+      "editor/title/run": [
+        {
+          "command": "sharprunx.runCSharp",
+          "group": "navigation@1",
+          "when": "resourceLangId == csharp"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.80.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
